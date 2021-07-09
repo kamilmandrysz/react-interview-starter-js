@@ -1,0 +1,10 @@
+@import "~bootstrap/scss/_functions";
+@import "~bootstrap/scss/_variables";
+@import "~bootstrap/scss/_mixins";
+@import "styles/partials/_functions";
+
+$font-primary: "Nunito", sans-serif;
+
+// bootstrap vars
+$font-size-base: 16px;
+$font-family-base: $font-primary;

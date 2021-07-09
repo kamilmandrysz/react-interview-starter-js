@@ -1,0 +1,53 @@
+@import "styles/partials/_variables";
+
+.Button {
+  display: inline-flex;
+  width: 100%;
+  padding: calcrem(6px) calcrem(24px);
+  border: 1px solid transparent;
+  border-radius: calcrem(4px);
+  vertical-align: middle;
+  align-items: center;
+  justify-content: center;
+  color: tc("foreground", "dark1");
+  background-color: transparent;
+  font-size: calcrem(14px);
+  font-weight: 400;
+  line-height: 1.5;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &:focus,
+  &:active {
+    outline: 0;
+  }
+}
+
+.Button__primary {
+  color: #fff;
+  background-color: tc("primary", "lightBlue");
+
+  &:not(:disabled):hover {
+    background-color: tc("primary", "darkBlue");
+  }
+}
+
+.Button__secondary {
+  color: tc("primary", "lightBlue");
+  border-color: tc("primary", "lightBlue");
+  background-color: #fff;
+
+  &:not(:disabled):hover {
+    color: tc("primary", "darkBlue");
+    border-color: tc("primary", "darkBlue");
+  }
+}

@@ -1,0 +1,33 @@
+@import "styles/partials/_variables";
+
+html {
+  min-width: calcrem(325px);
+  font-size: $font-family-base;
+}
+
+body {
+  background-color: tc("primary", "background");
+  -webkit-font-smoothing: antialiased;
+}
+
+.button {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  margin: 0;
+  background-color: transparent;
+  outline: 0;
+  appearance: none;
+  text-align: left;
+
+  &:focus,
+  &:active {
+    outline: 0;
+  }
+}
+
+.ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

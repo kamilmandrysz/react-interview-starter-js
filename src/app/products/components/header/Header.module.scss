@@ -1,0 +1,37 @@
+@import "styles/partials/_variables";
+
+.Header {
+  background-color: #fff;
+  padding: calcrem(36px) calcrem(24px);
+
+  @include media-breakpoint-up(lg) {
+    padding: calcrem(36px) calcrem(32px);
+  }
+
+  @include media-breakpoint-up(xl) {
+    padding: calcrem(42px) calcrem(106px);
+  }
+}
+
+.Header__logo {
+  height: 100%;
+  width: auto;
+
+  @include media-breakpoint-up(md) {
+    height: auto;
+  }
+}
+
+.Header_search {
+  width: 100%;
+
+  @include media-breakpoint-up(md) {
+    max-width: calcrem(250px);
+    margin-left: calcrem(36px);
+  }
+
+  @include media-breakpoint-up(lg) {
+    max-width: calcrem(390px);
+    margin-left: calcrem(105px);
+  }
+}
