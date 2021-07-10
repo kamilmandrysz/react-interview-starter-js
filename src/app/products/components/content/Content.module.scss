@@ -1,0 +1,9 @@
+@import "styles/partials/_variables";
+
+.Content {
+  padding: calcrem(24px) calcrem(24px);
+
+  @include media-breakpoint-up(xl) {
+    padding: calcrem(56px) calcrem(100px);
+  }
+}

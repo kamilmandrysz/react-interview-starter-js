@@ -27,7 +27,7 @@
 
   @include media-breakpoint-up(md) {
     max-width: calcrem(250px);
-    margin-left: calcrem(36px);
+    margin: 0 calcrem(24px) 0 calcrem(36px);
   }
 
   @include media-breakpoint-up(lg) {

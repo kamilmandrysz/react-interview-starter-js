@@ -22,7 +22,6 @@
   user-select: none;
 
   &:disabled {
-    opacity: 0.5;
     cursor: not-allowed;
   }
 
@@ -50,4 +49,16 @@
     color: tc("primary", "darkBlue");
     border-color: tc("primary", "darkBlue");
   }
+}
+
+.Button__isDisabled__primary {
+  background-color: tc("foreground", "light4");
+  cursor: not-allowed;
+}
+
+.Button__isDisabled__secondary {
+  color: tc("foreground", "light4");
+  border-color: tc("foreground", "light4");
+  background-color: #fff;
+  cursor: not-allowed;
 }

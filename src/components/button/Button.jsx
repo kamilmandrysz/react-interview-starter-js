@@ -18,10 +18,14 @@ const Button = ({
     <button
       className={cnb(
         styles.Button,
-        buttonType && styles[`Button__${buttonType}`]
+        buttonType && styles[`Button__${buttonType}`],
+        isDisabled && styles[`Button__isDisabled__${buttonType}`]
       )}
+      disabled={isDisabled}
+      onClick={isDisabled ? undefined : onClick}
+      {...rest}
     >
-      Log in
+      {label}
     </button>
   );
 };

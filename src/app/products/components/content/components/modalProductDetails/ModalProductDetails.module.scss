@@ -1,0 +1,36 @@
+@import "styles/partials/_variables";
+
+.ModalProductDetails {
+  position: relative;
+}
+
+.ModalProductDetails__image {
+  width: 100%;
+  height: auto;
+  max-height: calcrem(350px);
+  object-fit: cover;
+  border-top-left-radius: calcrem(8px);
+  border-top-right-radius: calcrem(8px);
+}
+
+.ModalProductDetails__button {
+  border: none;
+  background: transparent;
+  position: absolute;
+  top: calcrem(15px);
+  right: calcrem(15px);
+}
+
+.ModalProductDetails__name {
+  font-size: calcrem(24px);
+  line-height: calcrem(32px);
+  font-weight: 500;
+}
+
+.ModalProductDetails__description {
+  font-size: calcrem(18px);
+  line-height: calcrem(24px);
+  font-weight: 500;
+  margin-bottom: 0;
+  color: tc("foreground", "light4");
+}

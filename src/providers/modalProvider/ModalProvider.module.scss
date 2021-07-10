@@ -1,0 +1,37 @@
+@import "Styles/partials/_variables";
+
+:global {
+  .ReactModal__Body--open {
+    overflow: hidden;
+  }
+}
+
+.Modal__Overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  background-color: rgba(tc("foreground", "dark1"), 0.8);
+}
+
+.Modal {
+  max-width: calcrem(600px);
+  border-radius: calcrem(8px);
+  margin: 0 auto;
+  position: absolute;
+  top: calcrem(40px);
+  right: calcrem(20px);
+  left: calcrem(20px);
+  background: rgb(255, 255, 255);
+  outline: none;
+}
+
+.Modal_overflow {
+  overflow: auto;
+}
+
+.Modal_overflowHidden {
+  overflow: hidden;
+}

@@ -2,15 +2,20 @@ import "styles/global.scss";
 
 import React from "react";
 import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+
+import { store } from "store/store";
 
 import { AppProviders } from "./providers/AppProviders";
 import { App } from "./app/App";
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
-  <AppProviders>
-    <App />
-  </AppProviders>,
+  <Provider store={store}>
+    <AppProviders>
+      <App />
+    </AppProviders>
+  </Provider>,
   document.getElementById("root")
 );
 

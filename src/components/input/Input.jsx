@@ -8,26 +8,24 @@ import styles from "./Input.module.scss";
 
 const Input = ({
   className,
+  innerRef,
   name,
   isSearch,
   placeholder,
-  handleSearch,
   ...rest
 }) => {
   return (
     <div className={cnb(styles.InputWrapper, className)}>
       <input
+        ref={innerRef}
         className={cnb(styles.Input, isSearch && styles.Input__search)}
         placeholder={placeholder}
         {...rest}
+        name={name}
       />
 
       {isSearch && (
-        <button
-          type="button"
-          className={styles.SearchIcon}
-          onClick={handleSearch}
-        >
+        <button type="submit" className={styles.SearchIcon}>
           <SearchIcon />
         </button>
       )}
@@ -37,18 +35,18 @@ const Input = ({
 
 Input.propTypes = {
   className: PropTypes.string,
+  innerRef: PropTypes.func,
   name: PropTypes.string,
   isSearch: PropTypes.bool,
   placeholder: PropTypes.string,
-  handleSearch: PropTypes.func,
 };
 
 Input.defaultProps = {
   className: "",
+  innerRef: undefined,
   name: "",
   isSearch: false,
   placeholder: "",
-  handleSearch: undefined,
 };
 
 export default Input;
