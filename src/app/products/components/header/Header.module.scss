@@ -2,7 +2,12 @@
 
 .Header {
   background-color: #fff;
+  height: $header-mobile-height;
   padding: calcrem(36px) calcrem(24px);
+
+  @include media-breakpoint-up(md) {
+    height: $header-height;
+  }
 
   @include media-breakpoint-up(lg) {
     padding: calcrem(36px) calcrem(32px);
@@ -10,15 +15,6 @@
 
   @include media-breakpoint-up(xl) {
     padding: calcrem(42px) calcrem(106px);
-  }
-}
-
-.Header__logo {
-  height: 100%;
-  width: auto;
-
-  @include media-breakpoint-up(md) {
-    height: auto;
   }
 }
 

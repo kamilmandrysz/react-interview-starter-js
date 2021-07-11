@@ -13,13 +13,17 @@ import {
 import { ITEMS_PER_PAGE } from "constants/products";
 
 import Product from "app/products/components/content/components/product";
+import NoResult from "app/products/components/content/components/noResult";
 import Pagination from "components/pagination/Pagination";
+import Loader from "components/loader";
 
 import styles from "./Content.module.scss";
 
 const Content = () => {
   const dispatch = useDispatch();
-  const { products, currentPage } = useSelector((state) => state.products);
+  const { products, currentPage, meta, isReady } = useSelector(
+    (state) => state.products
+  );
 
   useOnMount(() => {
     const params = { limit: ITEMS_PER_PAGE, page: currentPage };
@@ -34,27 +38,47 @@ const Content = () => {
     };
   });
 
+  console.log(meta);
+
   return (
     <section>
-      <Container className={styles.Content} fluid>
-        <Row>
-          {products.map((e) => {
-            const { id, name, description, rating, image, promo, active } = e;
-            return (
-              <Product
-                key={id}
-                name={name}
-                description={description}
-                rating={rating}
-                image={image}
-                promo={promo}
-                active={active}
-              />
-            );
-          })}
-        </Row>
-        <Pagination />
-      </Container>
+      {isReady ? (
+        <Container className={styles.Content} fluid>
+          {meta.totalItems > 0 ? (
+            <>
+              <Row>
+                {products.map((e) => {
+                  const {
+                    id,
+                    name,
+                    description,
+                    rating,
+                    image,
+                    promo,
+                    active,
+                  } = e;
+                  return (
+                    <Product
+                      key={id}
+                      name={name}
+                      description={description}
+                      rating={rating}
+                      image={image}
+                      promo={promo}
+                      active={active}
+                    />
+                  );
+                })}
+              </Row>
+              <Pagination />
+            </>
+          ) : (
+            <NoResult />
+          )}
+        </Container>
+      ) : (
+        <Loader />
+      )}
     </section>
   );
 };

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toastr } from "react-redux-toastr";
 import Cookies from "react-cookies";
 
 import { store } from "store/store";
@@ -35,7 +36,10 @@ API.interceptors.response.use(
     const { status } = error.response || false;
 
     if (status && status === 401) {
-      console.log("brak sesji");
+      toastr.error(
+        "Something went wrong",
+        "You are not logged in or your session has expired. Please log in again."
+      );
 
       store.dispatch(logout());
 

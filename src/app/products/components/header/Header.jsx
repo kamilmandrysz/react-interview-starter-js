@@ -57,14 +57,11 @@ const Header = () => {
     const filterParams = {};
 
     Object.keys(data).forEach((key) => {
-      if (key === "search" && data[key] !== "") {
-        filterParams[key] = data[key];
-      } else if (
-        (key === "active" && data[key] !== false) ||
-        (key === "promo" && data[key] !== false)
-      ) {
-        filterParams[key] = data[key];
+      if (data[key] === "" || data[key] === false) {
+        return;
       }
+
+      filterParams[key] = data[key];
     });
 
     const params = { limit: ITEMS_PER_PAGE, page: 1, ...filterParams };

@@ -15,7 +15,7 @@ import { USER_ENDPOINTS } from "constants/endpoints";
 
 import { AppRoute } from "../../routing/AppRoute.enum";
 
-import { isNotEmptyObject } from "utils/common";
+import { isEmptyObject } from "utils/common";
 
 import Input from "components/input";
 import Button from "components/button";
@@ -89,7 +89,7 @@ export const Login = () => {
           className="mb-2"
           type="submit"
           label="Log in"
-          isDisabled={isSubmitting || isNotEmptyObject(errors)}
+          isDisabled={isSubmitting || !isEmptyObject(errors)}
           isSubmitting={isSubmitting}
         />
         <Link className={styles.Login__forgotPassword} to={AppRoute.home}>

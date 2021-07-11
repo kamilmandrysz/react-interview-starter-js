@@ -1,0 +1,13 @@
+@import "styles/partials/_variables";
+
+.Loader {
+  height: calc(100vh - 248px);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include media-breakpoint-up(md) {
+    height: calc(100vh - 144px);
+  }
+}
