@@ -1,10 +1,8 @@
 @import "styles/partials/_variables";
 
-.Link {
-  background: transparent;
+.Page {
   border: none;
-  font-size: 14px;
-  transition: color 0.15s ease-in-out;
+  background-color: transparent;
   padding: 0;
 
   &:hover {
@@ -13,12 +11,14 @@
   }
 }
 
-.Link__active {
+.Page__active {
   color: tc("primary", "lightBlue");
-  cursor: none;
 }
 
-.Link__inactive {
+.Page__disabled {
   color: tc("foreground", "light4");
-  cursor: not-allowed;
+
+  &:hover {
+    cursor: not-allowed;
+  }
 }

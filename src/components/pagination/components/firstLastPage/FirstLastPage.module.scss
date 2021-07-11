@@ -1,0 +1,21 @@
+@import "styles/partials/_variables";
+
+.FirstLastPage {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+
+  &:hover {
+    color: tc("primary", "lightBlue");
+    cursor: pointer;
+  }
+}
+
+.FirstLastPage__disabled {
+  color: tc("foreground", "light4");
+
+  &:hover {
+    cursor: not-allowed;
+    color: tc("foreground", "light4");
+  }
+}

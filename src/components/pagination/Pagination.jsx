@@ -1,138 +1,209 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import queryString from "query-string";
+import React from "react";
+import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 
-import {
-  setProductsCurrentPageAction,
-  fetchProductsWithFilters,
-  setProductsAction,
-} from "store/products/actions";
-
-import { INLINE_PAGINATION, LINKS_DISPLAY } from "constants/pagination";
-import { ITEMS_PER_PAGE } from "constants/products";
-
-import Link from "components/pagination/components/link";
+import Page from "components/pagination/components/page";
 import Dots from "components/pagination/components/dots";
+import FirstLastPage from "components/pagination/components/firstLastPage/FirstLastPage";
 
-const Pagination = () => {
-  const dispatch = useDispatch();
-  const [paginationLinks, setPaginationLinks] = useState([]);
-  const {
-    meta: { totalPages },
-    currentPage,
-    filters,
-  } = useSelector((state) => state.products);
+const Pagination = ({ totalPages, onChange }) => {
+  const { currentPage } = useSelector((state) => state.products);
+  const pageNumbers = [];
 
-  const handleLinkClick = (page) => {
-    const params = { limit: ITEMS_PER_PAGE, page };
-    const paramsString = queryString.stringify(params, {
-      arrayFormat: "comma",
-    });
-
-    fetchProductsWithFilters(paramsString).then((res) => {
-      const { items, meta, links } = res.data;
-
-      dispatch(setProductsAction(items, meta, links));
-      dispatch(setProductsCurrentPageAction(meta.currentPage));
-    });
-  };
+  for (let i = 1; i <= totalPages; i++) {
+    pageNumbers.push(i);
+  }
 
   const renderPagination = () => {
-    const links = [];
-    if (totalPages === 0) {
-      setPaginationLinks(links);
-      return;
-    }
-
-    links.push(
-      <Link
-        className="mr-4"
-        isInactive={currentPage === 1}
-        label="First"
-        onClick={() => handleLinkClick(1)}
-      />
-    );
-
-    if (totalPages <= INLINE_PAGINATION) {
-      for (let i = 1; i <= totalPages; i++) {
-        links.push(
-          <Link
-            className={i !== totalPages && "mr-3"}
-            isActive={i === currentPage}
-            label={i}
-            onClick={() => handleLinkClick(i)}
-          />
+    if (totalPages <= 6) {
+      return pageNumbers.map((e) => {
+        return (
+          <Page key={e} currentPage={currentPage} onChange={onChange}>
+            {e}
+          </Page>
         );
-      }
+      });
     } else if (currentPage === 1) {
-      for (let i = 0; i <= LINKS_DISPLAY; i++) {
-        links.push(
-          <Link
-            className="mr-3"
-            isActive={i + 1 === currentPage}
-            label={i + 1}
-            onClick={() => handleLinkClick(i + 1)}
-          />
-        );
-      }
-      links.push(<Dots />);
-      for (let i = LINKS_DISPLAY; i >= 0; i--) {
-        links.push(
-          <Link
-            className={i !== 0 && "mr-3"}
-            label={totalPages - i}
-            onClick={() => handleLinkClick(totalPages - i)}
-          />
-        );
-      }
+      return pageNumbers.map((e) => {
+        if (
+          e === currentPage ||
+          e === currentPage + 1 ||
+          e === currentPage + 2 ||
+          e === totalPages - 2 ||
+          e === totalPages - 1 ||
+          e === totalPages
+        ) {
+          if (e === currentPage + 2) {
+            return (
+              <>
+                <Page key={e} currentPage={currentPage} onChange={onChange}>
+                  {e}
+                </Page>
+                <Dots key="dots" />
+              </>
+            );
+          } else if (e === totalPages) {
+            return (
+              <Page
+                key={e}
+                currentPage={currentPage}
+                onChange={onChange}
+                isLast
+              >
+                {e}
+              </Page>
+            );
+          }
+
+          return (
+            <Page key={e} currentPage={currentPage} onChange={onChange}>
+              {e}
+            </Page>
+          );
+        } else return null;
+      });
+    } else if (currentPage === totalPages) {
+      return pageNumbers.map((e) => {
+        if (
+          e === 1 ||
+          e === 2 ||
+          e === 3 ||
+          e === currentPage - 2 ||
+          e === currentPage - 1 ||
+          e === currentPage
+        ) {
+          if (e === 3) {
+            return (
+              <>
+                <Page key={e} currentPage={currentPage} onChange={onChange}>
+                  {e}
+                </Page>
+                <Dots key="dots" />
+              </>
+            );
+          } else if (e === currentPage) {
+            return (
+              <Page
+                key={e}
+                currentPage={currentPage}
+                onChange={onChange}
+                isLast
+              >
+                {e}
+              </Page>
+            );
+          }
+
+          return (
+            <Page key={e} currentPage={currentPage} onChange={onChange}>
+              {e}
+            </Page>
+          );
+        } else return null;
+      });
+    } else if (currentPage >= totalPages - 4) {
+      return pageNumbers.map((e) => {
+        if (
+          e === 1 ||
+          e === 2 ||
+          e === 3 ||
+          e === currentPage - 1 ||
+          e === currentPage ||
+          e === currentPage + 1
+        ) {
+          if (e === 3) {
+            return (
+              <>
+                <Page key={e} currentPage={currentPage} onChange={onChange}>
+                  {e}
+                </Page>
+                <Dots key="dots" />
+              </>
+            );
+          } else if (e === currentPage + 1) {
+            return (
+              <Page
+                key={e}
+                currentPage={currentPage}
+                onChange={onChange}
+                isLast
+              >
+                {e}
+              </Page>
+            );
+          }
+
+          return (
+            <Page key={e} currentPage={currentPage} onChange={onChange}>
+              {e}
+            </Page>
+          );
+        } else return null;
+      });
     } else {
-      for (let i = currentPage - 1; i <= LINKS_DISPLAY + currentPage - 1; i++) {
-        links.push(
-          <Link
-            className="mr-3"
-            isActive={i === currentPage}
-            label={i}
-            onClick={() => handleLinkClick(i)}
-          />
-        );
-      }
-      links.push(<Dots />);
-      for (let i = LINKS_DISPLAY; i >= 0; i--) {
-        links.push(
-          <Link
-            className={i !== 0 && "mr-3"}
-            label={totalPages - i}
-            onClick={() => handleLinkClick(totalPages - i)}
-          />
-        );
-      }
+      return pageNumbers.map((e) => {
+        if (
+          e === currentPage - 1 ||
+          e === currentPage ||
+          e === currentPage + 1 ||
+          e === totalPages - 2 ||
+          e === totalPages - 1 ||
+          e === totalPages
+        ) {
+          if (e === currentPage + 1) {
+            return (
+              <>
+                <Page key={e} currentPage={currentPage} onChange={onChange}>
+                  {e}
+                </Page>
+                <Dots key="dots" />
+              </>
+            );
+          } else if (e === totalPages) {
+            return (
+              <Page
+                key={e}
+                currentPage={currentPage}
+                onChange={onChange}
+                isLast
+              >
+                {e}
+              </Page>
+            );
+          }
+
+          return (
+            <Page key={e} currentPage={currentPage} onChange={onChange}>
+              {e}
+            </Page>
+          );
+        } else return null;
+      });
     }
-
-    links.push(
-      <Link
-        className="ml-4"
-        isInactive={currentPage === totalPages}
-        label="Last"
-        onClick={() => handleLinkClick(totalPages)}
-      />
-    );
-
-    setPaginationLinks(links);
   };
 
-  useEffect(() => {
-    if (totalPages) {
-      renderPagination();
-    }
-  }, [currentPage, totalPages]);
-
-  useEffect(() => {}, [filters]);
-
   return (
-    <div className="d-flex justify-content-center mt-4 mt-lg-5">
-      <div className="d-flex">{paginationLinks}</div>
+    <div className="d-flex justify-content-center w-100 mt-3 mt-md-4">
+      <FirstLastPage
+        isFirst
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onChange={onChange}
+      />
+      {renderPagination()}
+      <FirstLastPage
+        isLast
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onChange={onChange}
+      />
     </div>
   );
+};
+
+Pagination.propTypes = {
+  totalPages: PropTypes.number.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default Pagination;

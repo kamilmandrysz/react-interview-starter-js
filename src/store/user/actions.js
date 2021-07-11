@@ -48,13 +48,12 @@ export const getDetails = () => {
 
 export const login = (data) => {
   return async (dispatch) => {
-    const { user, expiresIn, access_token } = data;
+    const { user, access_token } = data;
 
     Cookies.save(COOKIE_SID, access_token, {});
     dispatch(setDetailsAction(user));
     dispatch(setLoggedInAction(true));
 
-    console.log(expiresIn);
     toastr.success("Success", "Logged in successfully", { ...TOASTR_OPTIONS });
   };
 };

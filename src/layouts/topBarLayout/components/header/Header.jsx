@@ -17,7 +17,7 @@ import logo from "assets/images/logo.png";
 const Header = ({ children }) => {
   const isNotMobile = useMediaQuery({ minWidth: 768 });
   const history = useHistory();
-  const { loggedIn, avatar } = useSelector((state) => state.user);
+  const { loggedIn } = useSelector((state) => state.user);
 
   const handleLogInClick = () => {
     history.push(AppRoute.login);
@@ -52,7 +52,12 @@ const Header = ({ children }) => {
           (loggedIn ? (
             <AccountDropdown />
           ) : (
-            <div className="d-flex flex-direction-center w-auto ml-md-auto">
+            <div
+              className={cnb(
+                styles.Header__login,
+                "d-flex flex-direction-center w-auto ml-md-auto"
+              )}
+            >
               <Button
                 type="button"
                 buttonType="secondary"
