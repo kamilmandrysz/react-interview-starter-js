@@ -24,6 +24,8 @@ import Button from "components/button";
 import Input from "components/input";
 import Checkbox from "components/checkbox";
 
+import AccountDropdown from "app/products/components/header/components/accountDropdown";
+
 import styles from "app/products/components/header/Header.module.scss";
 
 import logo from "assets/images/logo.png";
@@ -39,6 +41,7 @@ const Header = () => {
   const isNotMobile = useMediaQuery({ minWidth: 768 });
   const history = useHistory();
   const { filters } = useSelector((state) => state.products);
+  const { loggedIn, avatar } = useSelector((state) => state.user);
   const { register, handleSubmit, setValue } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
@@ -85,6 +88,10 @@ const Header = () => {
     });
   }, [setValue, filters]);
 
+  useEffect(() => {
+    console.log(avatar);
+  }, [avatar]);
+
   return (
     <header>
       <form
@@ -97,16 +104,19 @@ const Header = () => {
       >
         <div className="d-flex justify-content-between align-items-center mb-1 mb-md-0">
           <img src={logo} alt="logo" className={styles.Header__logo} />
-          {!isNotMobile && (
-            <div className="d-flex flex-direction-center w-auto">
-              <Button
-                type="button"
-                buttonType="secondary"
-                label="Log in"
-                onClick={handleLogInClick}
-              />
-            </div>
-          )}
+          {!isNotMobile &&
+            (loggedIn ? (
+              <AccountDropdown />
+            ) : (
+              <div className="d-flex flex-direction-center w-auto">
+                <Button
+                  type="button"
+                  buttonType="secondary"
+                  label="Log in"
+                  onClick={handleLogInClick}
+                />
+              </div>
+            ))}
         </div>
         <Input
           className={cnb(styles.Header_search, "mt-4 mt-md-0")}
@@ -124,16 +134,19 @@ const Header = () => {
           />
           <Checkbox name="promo" label="Promo" innerRef={register} />
         </div>
-        {isNotMobile && (
-          <div className="d-flex flex-direction-center w-auto ml-md-auto">
-            <Button
-              type="button"
-              buttonType="secondary"
-              label="Log in"
-              onClick={handleLogInClick}
-            />
-          </div>
-        )}
+        {isNotMobile &&
+          (loggedIn ? (
+            <AccountDropdown />
+          ) : (
+            <div className="d-flex flex-direction-center w-auto ml-md-auto">
+              <Button
+                type="button"
+                buttonType="secondary"
+                label="Log in"
+                onClick={handleLogInClick}
+              />
+            </div>
+          ))}
       </form>
     </header>
   );

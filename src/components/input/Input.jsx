@@ -12,10 +12,14 @@ const Input = ({
   name,
   isSearch,
   placeholder,
+  label,
+  isError,
+  feedback,
   ...rest
 }) => {
   return (
     <div className={cnb(styles.InputWrapper, className)}>
+      {label !== "" && <span className={styles.Input__label}>{label}</span>}
       <input
         ref={innerRef}
         className={cnb(styles.Input, isSearch && styles.Input__search)}
@@ -29,6 +33,8 @@ const Input = ({
           <SearchIcon />
         </button>
       )}
+
+      {isError && <span className={styles.Input__feedback}>{feedback}</span>}
     </div>
   );
 };
@@ -39,6 +45,9 @@ Input.propTypes = {
   name: PropTypes.string,
   isSearch: PropTypes.bool,
   placeholder: PropTypes.string,
+  label: PropTypes.string,
+  isError: PropTypes.bool,
+  feedback: PropTypes.string,
 };
 
 Input.defaultProps = {
@@ -47,6 +56,9 @@ Input.defaultProps = {
   name: "",
   isSearch: false,
   placeholder: "",
+  label: "",
+  isError: false,
+  feedback: "",
 };
 
 export default Input;

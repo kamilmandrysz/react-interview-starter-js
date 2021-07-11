@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { cnb } from "cnbuilder";
+import { Spinner } from "react-bootstrap";
 
 import styles from "./Button.module.scss";
 
@@ -17,6 +18,7 @@ const Button = ({
   return (
     <button
       className={cnb(
+        className,
         styles.Button,
         buttonType && styles[`Button__${buttonType}`],
         isDisabled && styles[`Button__isDisabled__${buttonType}`]
@@ -25,7 +27,11 @@ const Button = ({
       onClick={isDisabled ? undefined : onClick}
       {...rest}
     >
-      {label}
+      {isSubmitting ? (
+        <Spinner className={styles.Button__loader} animation="border" />
+      ) : (
+        label
+      )}
     </button>
   );
 };

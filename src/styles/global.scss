@@ -6,5 +6,10 @@
 @import "~bootstrap/scss/utilities/sizing";
 @import "~bootstrap/scss/utilities/position";
 @import "~bootstrap/scss/_modal";
+@import "~bootstrap/scss/_spinners";
+@import "~bootstrap/scss/_dropdown";
+@import "~react-redux-toastr/src/styles/animation.scss";
 
 @import "styles/partials/_base";
+
+@import "styles/components/toastr";

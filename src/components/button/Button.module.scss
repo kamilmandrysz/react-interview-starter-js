@@ -31,6 +31,11 @@
   }
 }
 
+.Button__loader {
+  width: calcrem(21px);
+  height: calcrem(21px);
+}
+
 .Button__primary {
   color: #fff;
   background-color: tc("primary", "lightBlue");

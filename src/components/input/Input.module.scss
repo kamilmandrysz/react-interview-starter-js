@@ -20,6 +20,11 @@
   line-height: calcrem(16px);
 }
 
+.Input__label {
+  font-size: calcrem(14px);
+  line-height: calcrem(16px);
+}
+
 .Input__search {
   &::placeholder {
     /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -63,4 +68,11 @@
   svg {
     fill: currentColor;
   }
+}
+
+.Input__feedback {
+  color: tc("foreground", "error");
+  font-size: calcrem(14px);
+  line-height: calcrem(16px);
+  margin-top: calcrem(8px);
 }
