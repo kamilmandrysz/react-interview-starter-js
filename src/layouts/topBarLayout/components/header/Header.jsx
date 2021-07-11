@@ -28,7 +28,7 @@ const Header = ({ children }) => {
       <div
         className={cnb(
           styles.Header,
-          "d-flex flex-column flex-md-row align-items-md-center"
+          "d-flex flex-column flex-md-row align-items-md-center justify-content-end justify-content-md-start"
         )}
       >
         <div className="d-flex justify-content-between align-items-center mb-1 mb-md-0">

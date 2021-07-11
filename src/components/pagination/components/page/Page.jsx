@@ -11,7 +11,7 @@ const Page = ({ currentPage, isLast, isDisabled, children, onChange }) => {
         styles.Page,
         currentPage === children && styles.Page__active,
         isDisabled && styles.Page__disabled,
-        !isLast && "mr-2"
+        !isLast && "mr-3"
       )}
       type="button"
       onClick={() => onChange(children)}

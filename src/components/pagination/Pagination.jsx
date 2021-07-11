@@ -17,6 +17,13 @@ const Pagination = ({ totalPages, onChange }) => {
   const renderPagination = () => {
     if (totalPages <= 6) {
       return pageNumbers.map((e) => {
+        if (e === totalPages) {
+          return (
+            <Page key={e} currentPage={currentPage} onChange={onChange} isLast>
+              {e}
+            </Page>
+          );
+        }
         return (
           <Page key={e} currentPage={currentPage} onChange={onChange}>
             {e}

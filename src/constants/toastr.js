@@ -1,5 +1,5 @@
 export const TOASTR_OPTIONS = {
-  timeOut: 6000,
+  timeOut: 4000,
   newestOnTop: true,
   preventDuplicates: true,
   position: "top-right",
