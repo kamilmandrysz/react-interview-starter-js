@@ -1,6 +1,6 @@
 @import "styles/partials/_variables";
 
-.Content {
+.ProductDisplay {
   padding: calcrem(24px) calcrem(24px);
 
   @include media-breakpoint-up(xl) {

@@ -17,17 +17,3 @@
     padding: calcrem(42px) calcrem(106px);
   }
 }
-
-.Header_search {
-  width: 100%;
-
-  @include media-breakpoint-up(md) {
-    max-width: calcrem(250px);
-    margin: 0 calcrem(24px) 0 calcrem(36px);
-  }
-
-  @include media-breakpoint-up(lg) {
-    max-width: calcrem(390px);
-    margin-left: calcrem(105px);
-  }
-}

@@ -2,8 +2,8 @@ import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import { Login } from "../app/login/Login";
-import { Products } from "../app/products/Products";
+import Login from "app/login";
+import Products from "app/products";
 
 import { AppRoute } from "./AppRoute.enum";
 

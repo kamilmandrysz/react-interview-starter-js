@@ -9,7 +9,7 @@ import { showModalAction } from "store/modal/actions";
 
 import Button from "components/button";
 
-import ModalProductDetails from "app/products/components/content/components/modalProductDetails";
+import ModalProductDetails from "app/products/components/productsDisplay/components/modalProductDetails";
 
 import styles from "./Product.module.scss";
 
